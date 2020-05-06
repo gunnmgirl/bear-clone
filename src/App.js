@@ -6,38 +6,23 @@ import SideNav from "./features/sideNav/SideNav";
 import Notes from "./features/notes/components/Notes";
 import Archive from "./features/notes/archive/Archive";
 import Trash from "./features/notes/trash/Trash";
-import Editor from "./features/notes/components/Editor";
-
-//import { useDispatch } from "react-redux";
-
-//import { addNote } from "./features/notes/actions/notesActions";
 
 const Layout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  height: 100vh;
 `;
 
-/*const payload = {
-  text: "Treca note",
-};*/
-
 function App() {
-  //const dispatch = useDispatch();
-
-  /*React.useEffect(() => {
-    dispatch(addNote(payload));
-  }, [dispatch]);*/
-
   return (
     <BrowserRouter>
       <Layout>
         <SideNav />
         <Switch>
-          <Route path="/archive" component={Archive} />
-          <Route path="/trash" component={Trash} />
-          <Route path="/" component={Notes} />
+          <Route path="/archive/:noteId?" component={Archive} />
+          <Route path="/trash/:noteId?" component={Trash} />
+          <Route path="/:noteId?" component={Notes} />
         </Switch>
-        <Editor />
       </Layout>
     </BrowserRouter>
   );
