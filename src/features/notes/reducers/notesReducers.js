@@ -1,5 +1,13 @@
 const INITIAL_STATE = {
-  notes: [{ text: "Prva note" }, { text: "Druga note" }],
+  notes: [
+    { text: "Prva note", id: 1 },
+    { text: "Druga note", id: 2 },
+  ],
+  archive: [{ text: "Prva arhiva", id: 3 }],
+  trash: [
+    { text: "Prvi trash", id: 4 },
+    { text: "Drugi trash", id: 5 },
+  ],
 };
 
 export default (state = INITIAL_STATE, action) => {

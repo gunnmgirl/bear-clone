@@ -1,33 +1,44 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import styled from "styled-components";
 
-import { addNote } from "./features/notes/actions/notesActions";
+import SideNav from "./features/sideNav/SideNav";
 import Notes from "./features/notes/components/Notes";
-import Archive from "./features/archive/Archive";
-import Trash from "./features/trash/Trash";
+import Archive from "./features/notes/archive/Archive";
+import Trash from "./features/notes/trash/Trash";
+import Editor from "./features/notes/components/Editor";
 
-const payload = {
+//import { useDispatch } from "react-redux";
+
+//import { addNote } from "./features/notes/actions/notesActions";
+
+const Layout = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+`;
+
+/*const payload = {
   text: "Treca note",
-};
+};*/
 
 function App() {
-  const dispatch = useDispatch();
-  const notes = useSelector((state) => state.notes);
+  //const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     dispatch(addNote(payload));
-  }, [dispatch]);
-
-  console.log(notes);
+  }, [dispatch]);*/
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/archive" component={Archive} />
-        <Route path="/trash" component={Trash} />
-        <Route path="/" exact component={Notes} />
-      </Switch>
+      <Layout>
+        <SideNav />
+        <Switch>
+          <Route path="/archive" component={Archive} />
+          <Route path="/trash" component={Trash} />
+          <Route path="/" component={Notes} />
+        </Switch>
+        <Editor />
+      </Layout>
     </BrowserRouter>
   );
 }
