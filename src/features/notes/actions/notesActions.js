@@ -4,3 +4,10 @@ export const addNote = (payload) => {
     payload,
   };
 };
+
+export const addContent = (payload) => {
+  return {
+    type: "ADD_CONTENT",
+    payload,
+  };
+};
