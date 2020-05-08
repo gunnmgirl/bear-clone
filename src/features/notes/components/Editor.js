@@ -39,7 +39,10 @@ function Editor() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    notes.map((note) => (note.id === noteId ? setInput(note.text) : null));
+    const note = notes.find((note) => note.id === noteId);
+    if (note) {
+      setInput(note.text);
+    }
   }, [noteId, notes]);
 
   if (noteId) {
