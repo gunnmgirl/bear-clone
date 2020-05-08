@@ -51,7 +51,15 @@ function Editor() {
         <Container>
           <StyledTextarea
             autoFocus
-            onBlur={() => dispatch(addContent({ text: input, id: noteId }))}
+            onBlur={() =>
+              dispatch(
+                addContent({
+                  text: input,
+                  id: noteId,
+                  modificationDate: new Date(),
+                })
+              )
+            }
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />

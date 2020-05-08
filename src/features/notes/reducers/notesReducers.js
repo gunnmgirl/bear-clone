@@ -2,13 +2,40 @@ import { nanoid } from "nanoid";
 
 const INITIAL_STATE = {
   notes: [
-    { text: "Prva note", id: nanoid() },
-    { text: "Druga note", id: nanoid() },
+    {
+      text: "Prva note",
+      id: nanoid(),
+      creationDate: new Date(),
+      modificationDate: new Date(),
+    },
+    {
+      text: "Druga note",
+      id: nanoid(),
+      creationDate: new Date(),
+      modificationDate: new Date(),
+    },
   ],
-  archive: [{ text: "Prva arhiva", id: nanoid() }],
+  archive: [
+    {
+      text: "Prva arhiva",
+      id: nanoid(),
+      creationDate: new Date(),
+      modificationDate: new Date(),
+    },
+  ],
   trash: [
-    { text: "Prvi trash", id: nanoid() },
-    { text: "Drugi trash", id: nanoid() },
+    {
+      text: "Prvi trash",
+      id: nanoid(),
+      creationDate: new Date(),
+      modificationDate: new Date(),
+    },
+    {
+      text: "Drugi trash",
+      id: nanoid(),
+      creationDate: new Date(),
+      modificationDate: new Date(),
+    },
   ],
 };
 
@@ -21,7 +48,11 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         notes: state.notes.map((note) =>
           note.id === action.payload.id
-            ? { ...note, text: action.payload.text }
+            ? {
+                ...note,
+                text: action.payload.text,
+                modificationDate: action.payload.modificationDate,
+              }
             : { ...note }
         ),
       };
