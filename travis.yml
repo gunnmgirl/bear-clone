@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+script:
+  - yarn run build
+  - mv build/index.html build/200.html
+deploy:
+  provider: surge
+  skip_cleanup: true
+  domain: bear-clone.surge.sh
+  project: ./build/
+on:
+  branch: master
