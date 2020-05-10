@@ -115,7 +115,7 @@ function Notes() {
           ))}
         </NotesContainer>
       </StyledNotes>
-      <Editor />
+      <Editor readonly={false} />
     </>
   );
 }

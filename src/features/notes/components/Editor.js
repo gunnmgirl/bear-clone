@@ -32,7 +32,7 @@ const Void = styled.div`
   border-left: 1px solid ${(props) => props.theme.border};
 `;
 
-function Editor() {
+function Editor({ readonly }) {
   const { noteId } = useParams();
   const [input, setInput] = React.useState("");
   const notes = useSelector((state) => state.notes.notes);
@@ -50,7 +50,7 @@ function Editor() {
       <StyledEditor>
         <Container>
           <StyledTextarea
-            autoFocus
+            readOnly={readonly}
             onBlur={() =>
               dispatch(
                 addContent({
