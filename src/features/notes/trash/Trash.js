@@ -1,10 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Editor from "../components/Editor";
-
 import styled from "styled-components";
 import { formatDistanceStrict } from "date-fns";
+import { SkipBack } from "react-feather";
+
+import Editor from "../components/Editor";
+import { restoreNote } from "../actions/notesActions";
 
 const StyledNotes = styled.div`
   background-color: ${(props) => props.theme.primaryBackground};
@@ -65,6 +67,7 @@ const Text = styled.p``;
 function Trash() {
   const notes = useSelector((state) => state.notes.trash);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -85,6 +88,7 @@ function Trash() {
                     new Date(note.modificationDate)
                   )}
                 </span>
+                <SkipBack onClick={() => dispatch(restoreNote(note))} />
               </TimeIconWraper>
               <Preview>
                 <Text>{note.text.substring(0, 90)}</Text>

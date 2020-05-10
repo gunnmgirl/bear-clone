@@ -25,3 +25,17 @@ export const archiveNote = (payload) => {
     payload,
   };
 };
+
+export const restoreNote = (payload) => {
+  return {
+    type: "RESTORE_NOTE",
+    payload,
+  };
+};
+
+export const unarchiveNote = (payload) => {
+  return {
+    type: "UNARCHIVE_NOTE",
+    payload,
+  };
+};

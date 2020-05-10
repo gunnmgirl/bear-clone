@@ -62,11 +62,23 @@ export default (state = INITIAL_STATE, action) => {
         notes: state.notes.filter((note) => note.id !== action.payload.id),
         trash: [...state.trash, action.payload],
       };
+    case "RESTORE_NOTE":
+      return {
+        ...state,
+        trash: state.trash.filter((note) => note.id !== action.payload.id),
+        notes: [...state.notes, action.payload],
+      };
     case "ARCHIVE_NOTE":
       return {
         ...state,
         notes: state.notes.filter((note) => note.id !== action.payload.id),
         archive: [...state.archive, action.payload],
+      };
+    case "UNARCHIVE_NOTE":
+      return {
+        ...state,
+        archive: state.archive.filter((note) => note.id !== action.payload.id),
+        notes: [...state.notes, action.payload],
       };
 
     default:

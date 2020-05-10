@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Editor from "../components/Editor";
-
 import styled from "styled-components";
 import { formatDistanceStrict } from "date-fns";
+
+import Editor from "../components/Editor";
 
 const StyledNotes = styled.div`
   background-color: ${(props) => props.theme.primaryBackground};
