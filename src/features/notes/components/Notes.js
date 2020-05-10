@@ -2,12 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Edit } from "react-feather";
+import { Edit, Delete } from "react-feather";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
 import { formatDistanceStrict } from "date-fns";
 
-import { addNote } from "../actions/notesActions";
+import { addNote, deleteNote } from "../actions/notesActions";
 import Editor from "./Editor";
 
 const StyledNotes = styled.div`
@@ -107,6 +107,7 @@ function Notes() {
                     new Date(note.modificationDate)
                   )}
                 </span>
+                <Delete onClick={() => dispatch(deleteNote(note))} />
               </TimeIconWraper>
               <Preview>
                 <Text>{note.text.substring(0, 90)}</Text>

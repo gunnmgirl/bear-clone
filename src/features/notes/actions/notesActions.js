@@ -11,3 +11,17 @@ export const addContent = (payload) => {
     payload,
   };
 };
+
+export const deleteNote = (payload) => {
+  return {
+    type: "DELETE_NOTE",
+    payload,
+  };
+};
+
+export const archiveNote = (payload) => {
+  return {
+    type: "ARCHIVE_NOTE",
+    payload,
+  };
+};
