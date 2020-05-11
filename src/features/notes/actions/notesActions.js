@@ -12,9 +12,23 @@ export const addContent = (payload) => {
   };
 };
 
+export const permanentDeleteNote = (payload) => {
+  return {
+    type: "PERMANENT_DELETE",
+    payload,
+  };
+};
+
 export const deleteNote = (payload) => {
   return {
     type: "DELETE_NOTE",
+    payload,
+  };
+};
+
+export const deleteNoteFromArchive = (payload) => {
+  return {
+    type: "DELETE_NOTE_FROM_ARCHIVE",
     payload,
   };
 };

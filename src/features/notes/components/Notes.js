@@ -6,7 +6,7 @@ import { Edit } from "react-feather";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
 
-import { addNote } from "../actions/notesActions";
+import { addNote, deleteNote, archiveNote } from "../actions/notesActions";
 import Editor from "./Editor";
 import NoteItem from "./NoteItem";
 
@@ -16,6 +16,23 @@ const StyledNotes = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
+`;
+
+const Menu = styled.ul`
+  padding: 0.25rem 1rem;
+  margin: 0;
+`;
+
+const MenuItem = styled.li`
+  font-family: "Roboto", sans-serif;
+  list-style: none;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  color: #333;
+  border-radius: 3px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
 `;
 
 const StyledSearch = styled.div`
@@ -47,6 +64,14 @@ const NotesContainer = styled.div`
   width: 100%;
 `;
 
+const StyledPopover = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+`;
+
 function payload() {
   return {
     text: "Treca note",
@@ -60,6 +85,31 @@ function Notes() {
   const notes = useSelector((state) => state.notes.notes);
   const history = useHistory();
   const dispatch = useDispatch();
+
+  function content(note) {
+    return (
+      <StyledPopover>
+        <Menu>
+          <MenuItem
+            onClick={() => {
+              dispatch(deleteNote(note));
+              history.push(`/`);
+            }}
+          >
+            Delete
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              dispatch(archiveNote(note));
+              history.push(`/`);
+            }}
+          >
+            Archive
+          </MenuItem>
+        </Menu>
+      </StyledPopover>
+    );
+  }
 
   return (
     <>
@@ -76,7 +126,12 @@ function Notes() {
         </StyledSearch>
         <NotesContainer>
           {notes.map((note) => (
-            <NoteItem key={note.id} note={note} />
+            <NoteItem
+              key={note.id}
+              note={note}
+              onClick={() => history.push(`${note.id}`)}
+              content={() => content(note)}
+            />
           ))}
         </NotesContainer>
       </StyledNotes>

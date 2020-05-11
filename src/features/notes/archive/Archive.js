@@ -1,10 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { formatDistanceStrict } from "date-fns";
 
 import Editor from "../components/Editor";
+import NoteItem from "../components/NoteItem";
+import { deleteNoteFromArchive, unarchiveNote } from "../actions/notesActions";
 
 const StyledNotes = styled.div`
   background-color: ${(props) => props.theme.primaryBackground};
@@ -39,32 +40,60 @@ const NotesContainer = styled.div`
   width: 100%;
 `;
 
-const NoteItem = styled.div`
-  width: 100%;
-  height: 5rem;
-  display: flex;
-  align-items: center;
+const Menu = styled.ul`
+  padding: 0.25rem 1rem;
+  margin: 0;
 `;
 
-const TimeIconWraper = styled.div`
+const MenuItem = styled.li`
+  font-family: "Roboto", sans-serif;
+  list-style: none;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  color: #333;
+  border-radius: 3px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+`;
+
+const StyledPopover = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 1rem;
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 `;
-
-const Preview = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  word-break: break-all;
-  border-bottom: 1px solid ${(props) => props.theme.border};
-`;
-
-const Text = styled.p``;
 
 function Archive() {
   const notes = useSelector((state) => state.notes.archive);
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  function content(note) {
+    return (
+      <StyledPopover>
+        <Menu>
+          <MenuItem
+            onClick={() => {
+              dispatch(unarchiveNote(note));
+              history.push(`/archive`);
+            }}
+          >
+            Unarchive
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              dispatch(deleteNoteFromArchive(note));
+              history.push(`/archive`);
+            }}
+          >
+            Delete
+          </MenuItem>
+        </Menu>
+      </StyledPopover>
+    );
+  }
 
   return (
     <>
@@ -76,20 +105,10 @@ function Archive() {
           {notes.map((note) => (
             <NoteItem
               key={note.id}
+              note={note}
               onClick={() => history.push(`/archive/${note.id}`)}
-            >
-              <TimeIconWraper>
-                <span>
-                  {formatDistanceStrict(
-                    new Date(),
-                    new Date(note.modificationDate)
-                  )}
-                </span>
-              </TimeIconWraper>
-              <Preview>
-                <Text>{note.text.substring(0, 90)}</Text>
-              </Preview>
-            </NoteItem>
+              content={() => content(note)}
+            />
           ))}
         </NotesContainer>
       </StyledNotes>
