@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Edit, Delete } from "react-feather";
+import { Edit } from "react-feather";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
-import { formatDistanceStrict } from "date-fns";
 
-import { addNote, deleteNote } from "../actions/notesActions";
+import { addNote } from "../actions/notesActions";
 import Editor from "./Editor";
+import NoteItem from "./NoteItem";
 
 const StyledNotes = styled.div`
   background-color: ${(props) => props.theme.primaryBackground};
@@ -47,29 +47,6 @@ const NotesContainer = styled.div`
   width: 100%;
 `;
 
-const NoteItem = styled.div`
-  width: 100%;
-  height: 5rem;
-  display: flex;
-  align-items: center;
-`;
-
-const TimeIconWraper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 1rem;
-`;
-
-const Preview = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  word-break: break-all;
-  border-bottom: 1px solid ${(props) => props.theme.border};
-`;
-
-const Text = styled.p``;
-
 function payload() {
   return {
     text: "Treca note",
@@ -99,20 +76,7 @@ function Notes() {
         </StyledSearch>
         <NotesContainer>
           {notes.map((note) => (
-            <NoteItem key={note.id} onClick={() => history.push(`${note.id}`)}>
-              <TimeIconWraper>
-                <span>
-                  {formatDistanceStrict(
-                    new Date(),
-                    new Date(note.modificationDate)
-                  )}
-                </span>
-                <Delete onClick={() => dispatch(deleteNote(note))} />
-              </TimeIconWraper>
-              <Preview>
-                <Text>{note.text.substring(0, 90)}</Text>
-              </Preview>
-            </NoteItem>
+            <NoteItem key={note.id} note={note} />
           ))}
         </NotesContainer>
       </StyledNotes>

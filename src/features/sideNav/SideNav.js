@@ -1,18 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FileText, Trash2, Archive } from "react-feather";
+import { FileText, Trash2, Archive, Sliders } from "react-feather";
 
 const StyledSideNav = styled.div`
   background-color: ${(props) => props.theme.secondaryBackground};
   color: ${(props) => props.theme.tertiary};
+  display: flex;
+  flex-direction: column;
+`;
+
+const Preferences = styled.div`
+  display: flex;
+  justify-content: end;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
 `;
 
 const SideNavColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 3rem 3rem;
+  padding: 0rem 3rem;
 `;
 
 const StyledLink = styled(Link)`
@@ -29,6 +38,9 @@ const LinkText = styled.span`
 function SideNav() {
   return (
     <StyledSideNav>
+      <Preferences>
+        <Sliders size="1.2rem" />
+      </Preferences>
       <SideNavColumn>
         <StyledLink to="/">
           <FileText size="1rem" />
