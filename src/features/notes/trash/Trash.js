@@ -112,7 +112,7 @@ function Trash() {
           ))}
         </NotesContainer>
       </StyledNotes>
-      <Editor readonly />
+      <Editor readonly notes={notes} />
     </>
   );
 }

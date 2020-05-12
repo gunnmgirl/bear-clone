@@ -3,13 +3,13 @@ import { nanoid } from "nanoid";
 const INITIAL_STATE = {
   notes: [
     {
-      text: "Prva note",
+      text: "First note",
       id: nanoid(),
       creationDate: new Date(),
       modificationDate: new Date(),
     },
     {
-      text: "Druga note",
+      text: "Second note",
       id: nanoid(),
       creationDate: new Date(),
       modificationDate: new Date(),
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
   ],
   archive: [
     {
-      text: "Prva arhiva",
+      text: "First archive",
       id: nanoid(),
       creationDate: new Date(),
       modificationDate: new Date(),
@@ -25,13 +25,13 @@ const INITIAL_STATE = {
   ],
   trash: [
     {
-      text: "Prvi trash",
+      text: "First trash",
       id: nanoid(),
       creationDate: new Date(),
       modificationDate: new Date(),
     },
     {
-      text: "Drugi trash",
+      text: "Second trash",
       id: nanoid(),
       creationDate: new Date(),
       modificationDate: new Date(),

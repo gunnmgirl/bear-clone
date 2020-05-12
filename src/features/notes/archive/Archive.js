@@ -112,7 +112,7 @@ function Archive() {
           ))}
         </NotesContainer>
       </StyledNotes>
-      <Editor readonly />
+      <Editor readonly notes={notes} />
     </>
   );
 }

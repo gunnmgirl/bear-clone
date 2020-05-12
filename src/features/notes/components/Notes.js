@@ -74,7 +74,7 @@ const StyledPopover = styled.div`
 
 function payload() {
   return {
-    text: "Treca note",
+    text: "",
     id: nanoid(),
     creationDate: new Date(),
     modificationDate: new Date(),
@@ -135,7 +135,7 @@ function Notes() {
           ))}
         </NotesContainer>
       </StyledNotes>
-      <Editor readonly={false} />
+      <Editor readonly={false} notes={notes} />
     </>
   );
 }

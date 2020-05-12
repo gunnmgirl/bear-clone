@@ -1,10 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { addContent } from "../actions/notesActions";
 import image from "../../../images/empty.png";
+import InfoPopover from "./InfoPopover";
 
 const StyledEditor = styled.div`
   background-color: ${(props) => props.theme.primaryBackground};
@@ -14,7 +15,9 @@ const StyledEditor = styled.div`
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding: 2rem;
+  padding: 2rem 1rem 2rem 2rem;
+  display: flex;
+  align-items: flex-start;
 `;
 
 const StyledTextarea = styled.textarea`
@@ -32,16 +35,17 @@ const Void = styled.div`
   border-left: 1px solid ${(props) => props.theme.border};
 `;
 
-function Editor({ readonly }) {
+function Editor({ readonly, notes }) {
   const { noteId } = useParams();
   const [input, setInput] = React.useState("");
-  const notes = useSelector((state) => state.notes.notes);
+  const [note, setNote] = React.useState(null);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     const note = notes.find((note) => note.id === noteId);
     if (note) {
       setInput(note.text);
+      setNote(note);
     }
   }, [noteId, notes]);
 
@@ -63,6 +67,7 @@ function Editor({ readonly }) {
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />
+          <InfoPopover note={note} />
         </Container>
       </StyledEditor>
     );
