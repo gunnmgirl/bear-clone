@@ -117,7 +117,7 @@ function Notes() {
         <StyledSearch>
           <StyledInput placeholder="Search Notes" type="search" />
           <EditIconWrapper
-            strokeWidth="1"
+            stroke-width="1.5"
             onClick={() => {
               dispatch(addNote(payload()));
               history.push(`${payload().id}`);

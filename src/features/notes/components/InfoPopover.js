@@ -6,15 +6,19 @@ import { format } from "date-fns";
 
 const StyledPopover = styled.div`
   border-radius: 3px;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: 0 0 0 1px ${(props) => props.theme.border};
+  background-color: ${(props) => props.theme.tertiaryBackground};
 `;
 
 const Wrapper = styled.div`
-  padding: 0.5rem 0.5rem;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
-const DateWrapper = styled.div`
+const ItemWrapper = styled.div`
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
@@ -24,9 +28,34 @@ const InfoWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  border-bottom: 1px solid ${(props) => props.theme.border};
+  border-top: 1px solid ${(props) => props.theme.border};
+  margin: 1rem 0;
+  padding: 1rem 0;
+`;
+
+const Num = styled.span`
+  color: ${(props) => props.theme.highlight};
+  font-weight: 200;
+`;
+
+const Text = styled.span`
+  font-size: 0.8rem;
+  color: ${(props) => props.theme.secondary};
+`;
+
+const Dates = styled.span`
+  color: ${(props) => props.theme.primary};
+  margin-bottom: 0.3rem;
+`;
+
+const StyledInfoIcon = styled(Info)`
+  color: ${(props) => props.theme.secondary};
 `;
 
 function InfoPopover({ note }) {
+  const WORDS_PER_MIN = 200;
   const [isOpen, setIsOpen] = React.useState(false);
   const [words, setWords] = React.useState([]);
   const [paragraphs, setParagraphs] = React.useState([]);
@@ -48,34 +77,47 @@ function InfoPopover({ note }) {
     return noNewline.length;
   }
 
+  function getReadingTime() {
+    const time = words.length / WORDS_PER_MIN;
+    return Math.ceil(time);
+  }
+
   function content() {
     return (
       <StyledPopover>
         <Wrapper>
-          <DateWrapper>
-            <span>
+          <ItemWrapper>
+            <Dates>
               {format(new Date(note.modificationDate), "d MMMM yyyy")}
-            </span>
-            <span>modification date</span>
-          </DateWrapper>
+            </Dates>
+            <Text>modification date</Text>
+          </ItemWrapper>
           <InfoWrapper>
-            <DateWrapper>
-              <span>{words.length}</span>
-              <span>words</span>
-            </DateWrapper>
-            <DateWrapper>
-              <span>{paragraphs.length}</span>
-              <span>paragraphs</span>
-            </DateWrapper>
-            <DateWrapper>
-              <span>{getCharNumber()}</span>
-              <span>characters</span>
-            </DateWrapper>
+            <ItemWrapper>
+              <Num>{words.length}</Num>
+              {words.length === 1 ? <Text>word</Text> : <Text>words</Text>}
+            </ItemWrapper>
+            <ItemWrapper>
+              <Num>{paragraphs.length}</Num>
+              {paragraphs.length === 1 ? (
+                <Text>paragraph</Text>
+              ) : (
+                <Text>paragraphs</Text>
+              )}
+            </ItemWrapper>
+            <ItemWrapper>
+              <Num>{getCharNumber()}</Num>
+              <Text>characters</Text>
+            </ItemWrapper>
+            <ItemWrapper>
+              <Num>{getReadingTime()}min</Num>
+              <Text>read time</Text>
+            </ItemWrapper>
           </InfoWrapper>
-          <DateWrapper>
-            <span>{format(new Date(note.creationDate), "d MMMM yyyy")}</span>
-            <span>creation date</span>
-          </DateWrapper>
+          <ItemWrapper>
+            <Dates>{format(new Date(note.creationDate), "d MMMM yyyy")}</Dates>
+            <Text>creation date</Text>
+          </ItemWrapper>
         </Wrapper>
       </StyledPopover>
     );
@@ -87,7 +129,7 @@ function InfoPopover({ note }) {
       content={content}
       onClickOutside={() => setIsOpen(false)}
     >
-      <Info onClick={handleOnClick} />
+      <StyledInfoIcon onClick={handleOnClick} stroke-width="1.5" />
     </Popover>
   );
 }
