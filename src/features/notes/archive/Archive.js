@@ -61,12 +61,15 @@ const StyledPopover = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 3px;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: 0 0 0 1px ${(props) => props.theme.border};
+  background-color: ${(props) => props.theme.tertiaryBackground};
 `;
 
 function Archive() {
   const notes = useSelector((state) => state.notes.archive);
+  notes.sort(function (a, b) {
+    return new Date(b.modificationDate) - new Date(a.modificationDate);
+  });
   const history = useHistory();
   const dispatch = useDispatch();
 

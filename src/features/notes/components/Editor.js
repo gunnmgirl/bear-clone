@@ -21,11 +21,13 @@ const Container = styled.div`
 `;
 
 const StyledTextarea = styled.textarea`
+  font-family: "Roboto", sans-serif;
   width: 100%;
   height: 100%;
   border: 0;
   background-color: ${(props) => props.theme.primaryBackground};
   resize: none;
+  color: ${(props) => props.theme.primary};
 `;
 
 const Void = styled.div`

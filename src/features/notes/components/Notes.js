@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Edit } from "react-feather";
+import { Edit3 } from "react-feather";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
 
@@ -51,10 +51,11 @@ const StyledInput = styled.input`
   text-align: center;
   margin-right: 0.5rem;
   width: 80%;
+  height: 100%;
 `;
 
-const EditIconWrapper = styled(Edit)`
-  color: ${(props) => props.theme.secondary};
+const EditIconWrapper = styled(Edit3)`
+  color: ${(props) => props.theme.primary};
 `;
 
 const NotesContainer = styled.div`
@@ -83,6 +84,9 @@ function payload() {
 
 function Notes() {
   const notes = useSelector((state) => state.notes.notes);
+  notes.sort(function (a, b) {
+    return new Date(b.modificationDate) - new Date(a.modificationDate);
+  });
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -117,7 +121,7 @@ function Notes() {
         <StyledSearch>
           <StyledInput placeholder="Search Notes" type="search" />
           <EditIconWrapper
-            stroke-width="1.5"
+            strokeWidth="1"
             onClick={() => {
               dispatch(addNote(payload()));
               history.push(`${payload().id}`);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Popover } from "@malcodeman/react-popover";
-import { formatDistanceStrict } from "date-fns";
+import { formatDistanceToNowStrict } from "date-fns";
 import styled from "styled-components";
 
 const StyledNoteItem = styled.div`
@@ -8,12 +8,14 @@ const StyledNoteItem = styled.div`
   height: 5rem;
   display: flex;
   align-items: center;
+  color: ${(props) => props.theme.secondary};
 `;
 
 const TimeIconWraper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 1rem;
+  margin: 0 0.8rem;
+  min-width: 3.5rem;
 `;
 
 const Preview = styled.div`
@@ -24,7 +26,9 @@ const Preview = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.border};
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+  margin-right: 0.8rem;
+`;
 
 function NoteItem(props) {
   const { note, onClick, content } = props;
@@ -44,7 +48,7 @@ function NoteItem(props) {
     <StyledNoteItem onContextMenu={handleOnContextMenu} onClick={handleOnClick}>
       <TimeIconWraper>
         <span>
-          {formatDistanceStrict(new Date(), new Date(note.modificationDate))}
+          {formatDistanceToNowStrict(new Date(note.modificationDate))}
         </span>
       </TimeIconWraper>
       <Popover

@@ -51,7 +51,7 @@ const Dates = styled.span`
 `;
 
 const StyledInfoIcon = styled(Info)`
-  color: ${(props) => props.theme.secondary};
+  color: ${(props) => props.theme.primary};
 `;
 
 function InfoPopover({ note }) {
@@ -129,7 +129,7 @@ function InfoPopover({ note }) {
       content={content}
       onClickOutside={() => setIsOpen(false)}
     >
-      <StyledInfoIcon onClick={handleOnClick} stroke-width="1.5" />
+      <StyledInfoIcon onClick={handleOnClick} strokeWidth="1" />
     </Popover>
   );
 }
