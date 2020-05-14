@@ -1529,6 +1529,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
+"@malcodeman/react-modal@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@malcodeman/react-modal/-/react-modal-1.0.2.tgz#7661028f3f55e59694e5239d9dcc827f3c3f0eb5"
+  integrity sha512-dQ+XBaEZozpWLMi3Uq+DoG+Fhkus2oeSZS9stetJKLxm0sG2RlCJqOltUlabUoEc3eWzJPR3zW8Qutye8fC4ag==
+
 "@malcodeman/react-popover@^1.1.6":
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/@malcodeman/react-popover/-/react-popover-1.1.6.tgz#560698560708d9466a365d2ef77c6240c5f92ad5"
