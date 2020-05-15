@@ -11,7 +11,10 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  saveState({ notes: store.getState().notes });
+  saveState({
+    notes: store.getState().notes,
+    preferences: store.getState().preferences,
+  });
 });
 
 export default store;

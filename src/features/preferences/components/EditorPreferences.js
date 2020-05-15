@@ -1,5 +1,14 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+
+import {
+  changeFontFamily,
+  changeFontSize,
+  changeLineHeight,
+  changeLineWidth,
+  changeParagraphSpacing,
+} from "../actions/preferencesActions";
 
 const StyledEditorPreferences = styled.div`
   padding: 1rem;
@@ -42,28 +51,10 @@ const StyledButton = styled.button`
 `;
 
 function EditorPreferences() {
-  const INITIAL_VALUES = {
-    fontFamily: "Georgia",
-    fontSize: 1,
-    lineHeight: 1,
-    lineWidth: 1,
-    paragraphSpacing: 1,
-  };
-  const [fontFamily, setFontFamily] = React.useState(INITIAL_VALUES.fontFamily);
-  const [fontSize, setFontSize] = React.useState(INITIAL_VALUES.fontSize);
-  const [lineHeight, setLineHeight] = React.useState(INITIAL_VALUES.lineHeight);
-  const [lineWidth, setLineWidth] = React.useState(INITIAL_VALUES.lineWidth);
-  const [paragraphSpacing, setParagraphSpacing] = React.useState(
-    INITIAL_VALUES.paragraphSpacing
-  );
+  const dispatch = useDispatch();
+  const editor = useSelector((state) => state.preferences.editor);
 
-  function ResetToDefault() {
-    setFontFamily(INITIAL_VALUES.fontFamily);
-    setFontSize(INITIAL_VALUES.fontSize);
-    setLineHeight(INITIAL_VALUES.lineHeight);
-    setLineWidth(INITIAL_VALUES.lineWidth);
-    setParagraphSpacing(INITIAL_VALUES.paragraphSpacing);
-  }
+  function ResetToDefault() {}
 
   return (
     <StyledEditorPreferences>
@@ -71,8 +62,10 @@ function EditorPreferences() {
         <AdjustItem>
           <Adjust style={{ paddingRight: "3.6rem" }}>
             <StyledSelect
-              value={fontFamily}
-              onChange={(event) => setFontFamily(event.target.value)}
+              value={editor.fontFamily}
+              onChange={(event) => {
+                dispatch(changeFontFamily(event.target.value));
+              }}
             >
               <option value="Avenir Next">Avenir Next</option>
               <option value="System">System</option>
@@ -88,12 +81,12 @@ function EditorPreferences() {
         <AdjustItem>
           <Adjust>
             <input
-              value={fontSize}
+              value={editor.fontSize}
               type="range"
               min="1"
               max="4"
               step="0.5"
-              onChange={(event) => setFontSize(event.target.value)}
+              onChange={(event) => dispatch(changeFontSize(event.target.value))}
             />
           </Adjust>
           <LabelWrapper>Font size</LabelWrapper>
@@ -101,12 +94,14 @@ function EditorPreferences() {
         <AdjustItem>
           <Adjust>
             <input
-              value={lineHeight}
+              value={editor.lineHeight}
               type="range"
               min="1"
               max="4"
               step="0.5"
-              onChange={(event) => setLineHeight(event.target.value)}
+              onChange={(event) =>
+                dispatch(changeLineHeight(event.target.value))
+              }
             />
           </Adjust>
           <LabelWrapper>Line height</LabelWrapper>
@@ -114,12 +109,14 @@ function EditorPreferences() {
         <AdjustItem>
           <Adjust>
             <input
-              value={lineWidth}
+              value={editor.lineWidth}
               type="range"
               min="1"
               max="4"
               step="0.5"
-              onChange={(event) => setLineWidth(event.target.value)}
+              onChange={(event) =>
+                dispatch(changeLineWidth(event.target.value))
+              }
             />
           </Adjust>
           <LabelWrapper>Line width</LabelWrapper>
@@ -127,12 +124,14 @@ function EditorPreferences() {
         <AdjustItem>
           <Adjust>
             <input
-              value={paragraphSpacing}
+              value={editor.paragraphSpacing}
               type="range"
               min="1"
               max="4"
               step="0.5"
-              onChange={(event) => setParagraphSpacing(event.target.value)}
+              onChange={(event) =>
+                dispatch(changeParagraphSpacing(event.target.value))
+              }
             />
           </Adjust>
           <LabelWrapper>Paragraph spacing</LabelWrapper>
