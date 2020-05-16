@@ -7,7 +7,7 @@ const INITIAL_STATE = {
     paragraphSpacing: "1",
   },
 
-  theme: "",
+  theme: "light",
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -37,6 +37,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         editor: { ...state.editor, paragraphSpacing: action.payload },
       };
+    case "CHANGE_THEME":
+      return { ...state, theme: action.payload };
     default:
       return state;
   }

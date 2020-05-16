@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
+import { useSelector } from "react-redux";
 
 import SideNav from "./features/sideNav/SideNav";
 import Notes from "./features/notes/components/Notes";
@@ -16,10 +17,25 @@ const Layout = styled.div`
 `;
 
 function App() {
-  const theme = themes.light;
+  const themeName = useSelector((state) => state.preferences.theme);
+
+  function getTheme() {
+    switch (themeName) {
+      case "light":
+        return themes.light;
+      case "dark":
+        return themes.dark;
+      case "redGraphite":
+        return themes.redGraphite;
+      case "darkGraphite":
+        return themes.darkGraphite;
+      default:
+        return themes.light;
+    }
+  }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={getTheme()}>
       <BrowserRouter>
         <GlobalStyle />
         <Layout>

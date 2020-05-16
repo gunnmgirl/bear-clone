@@ -18,7 +18,6 @@ const StyledModal = styled.div`
   width: 40rem;
   height: 21rem;
   border: 2px solid ${(props) => props.theme.border};
-  border-radius: 2%;
 `;
 
 const ToolbarItem = styled.div`

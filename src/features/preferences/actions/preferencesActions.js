@@ -32,3 +32,10 @@ export const changeParagraphSpacing = (payload) => {
     payload,
   };
 };
+
+export const changeTheme = (payload) => {
+  return {
+    type: "CHANGE_THEME",
+    payload,
+  };
+};
