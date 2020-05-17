@@ -6,6 +6,14 @@ import styled from "styled-components";
 import { addContent } from "../actions/notesActions";
 import image from "../../../images/empty.png";
 import InfoPopover from "./InfoPopover";
+import ToggleSidebarPopover from "./ToggleSidebarPopover";
+
+const IconsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+`;
 
 const StyledEditor = styled.div`
   background-color: ${(props) => props.theme.primaryBackground};
@@ -69,7 +77,10 @@ function Editor({ readonly, notes }) {
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />
-          <InfoPopover note={note} />
+          <IconsWrapper>
+            <InfoPopover note={note} />
+            <ToggleSidebarPopover />
+          </IconsWrapper>
         </Container>
       </StyledEditor>
     );

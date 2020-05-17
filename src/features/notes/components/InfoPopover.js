@@ -38,6 +38,7 @@ const InfoWrapper = styled.div`
 const Num = styled.span`
   color: ${(props) => props.theme.highlight};
   font-weight: 200;
+  text-transform: lowercase;
 `;
 
 const Text = styled.span`
@@ -110,7 +111,7 @@ function InfoPopover({ note }) {
               <Text>characters</Text>
             </ItemWrapper>
             <ItemWrapper>
-              <Num>{getReadingTime()}min</Num>
+              <Num>{getReadingTime()}m</Num>
               <Text>read time</Text>
             </ItemWrapper>
           </InfoWrapper>
