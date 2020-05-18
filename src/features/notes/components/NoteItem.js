@@ -40,27 +40,30 @@ function NoteItem(props) {
   }
 
   function handleOnClick() {
-    onClick();
     setIsOpen(false);
+    onClick();
   }
 
   return (
-    <StyledNoteItem onContextMenu={handleOnContextMenu} onClick={handleOnClick}>
-      <TimeIconWraper>
-        <span>
-          {formatDistanceToNowStrict(new Date(note.modificationDate))}
-        </span>
-      </TimeIconWraper>
-      <Popover
-        isOpen={isOpen}
-        content={content}
-        onClickOutside={() => setIsOpen(false)}
+    <Popover
+      isOpen={isOpen}
+      content={content}
+      onClickOutside={() => setIsOpen(false)}
+    >
+      <StyledNoteItem
+        onContextMenu={handleOnContextMenu}
+        onClick={handleOnClick}
       >
+        <TimeIconWraper>
+          <span>
+            {formatDistanceToNowStrict(new Date(note.modificationDate))}
+          </span>
+        </TimeIconWraper>
         <Preview>
           <Text>{note.text.substring(0, 90)}</Text>
         </Preview>
-      </Popover>
-    </StyledNoteItem>
+      </StyledNoteItem>
+    </Popover>
   );
 }
 

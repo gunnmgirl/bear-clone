@@ -67,9 +67,9 @@ const StyledPopover = styled.div`
 
 function Trash() {
   const notes = useSelector((state) => state.notes.trash);
-  notes.sort(function (a, b) {
+  /*notes.sort(function (a, b) {
     return new Date(b.modificationDate) - new Date(a.modificationDate);
-  });
+  });*/
   const history = useHistory();
   const dispatch = useDispatch();
 

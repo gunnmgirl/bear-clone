@@ -84,9 +84,11 @@ function payload() {
 
 function Notes() {
   const notes = useSelector((state) => state.notes.notes);
-  notes.sort(function (a, b) {
+  /*notes.sort(function (a, b) {
     return new Date(b.modificationDate) - new Date(a.modificationDate);
-  });
+  });*/
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [filteredNotes, setFilteredNotes] = React.useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -96,8 +98,8 @@ function Notes() {
         <Menu>
           <MenuItem
             onClick={() => {
-              dispatch(deleteNote(note));
               history.push(`/`);
+              dispatch(deleteNote(note));
             }}
           >
             Delete
@@ -115,11 +117,22 @@ function Notes() {
     );
   }
 
+  /*React.useEffect(() => {
+    const results = notes.filter((note) =>
+      note.text.substring(0, 90).includes(searchTerm)
+    );
+  }, [searchTerm, notes]);*/
+
   return (
     <>
       <StyledNotes>
         <StyledSearch>
-          <StyledInput placeholder="Search Notes" type="search" />
+          <StyledInput
+            placeholder="Search Notes"
+            type="search"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+          />
           <EditIconWrapper
             strokeWidth="1"
             onClick={() => {
