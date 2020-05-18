@@ -67,11 +67,23 @@ const StyledPopover = styled.div`
 
 function Archive() {
   const notes = useSelector((state) => state.notes.archive);
-  /* notes.sort(function (a, b) {
+  notes.sort(function (a, b) {
     return new Date(b.modificationDate) - new Date(a.modificationDate);
-  });*/
+  });
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [filteredNotes, setFilteredNotes] = React.useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const results = notes.filter((note) =>
+      note.text
+        .substring(0, 90)
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
+    setFilteredNotes(results);
+  }, [searchTerm, notes]);
 
   function content(note) {
     return (
@@ -102,10 +114,15 @@ function Archive() {
     <>
       <StyledNotes>
         <StyledSearch>
-          <StyledInput placeholder="Search Notes" type="search" />
+          <StyledInput
+            placeholder="Search Notes"
+            type="search"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+          />
         </StyledSearch>
         <NotesContainer>
-          {notes.map((note) => (
+          {filteredNotes.map((note) => (
             <NoteItem
               key={note.id}
               note={note}
