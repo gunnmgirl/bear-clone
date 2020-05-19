@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -18,18 +18,21 @@ const IconsWrapper = styled.div`
 const StyledEditor = styled.div`
   background-color: ${(props) => props.theme.primaryBackground};
   border-left: 1px solid ${(props) => props.theme.border};
+  overflow-y: auto;
 `;
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding: 2rem 1rem 2rem 2rem;
+  padding: 2rem 1rem 2rem ${(props) => `${props.lineWidth}rem`};
   display: flex;
   align-items: flex-start;
 `;
 
 const StyledTextarea = styled.textarea`
-  font-family: "Roboto", sans-serif;
+  font-family: ${(props) => props.fontFamily};
+  font-size: ${(props) => props.fontSize};
+  line-height: ${(props) => props.lineHeight};
   width: 100%;
   height: 100%;
   border: 0;
@@ -49,6 +52,7 @@ function Editor({ readonly, notes }) {
   const { noteId } = useParams();
   const [input, setInput] = React.useState("");
   const [note, setNote] = React.useState(null);
+  const editor = useSelector((state) => state.preferences.editor);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -56,15 +60,18 @@ function Editor({ readonly, notes }) {
     if (note) {
       setInput(note.text);
       setNote(note);
+      console.log(note.text);
     }
   }, [noteId, notes]);
-
   if (noteId) {
     return (
       <StyledEditor>
-        <Container>
+        <Container lineWidth={editor.lineWidth}>
           <StyledTextarea
             readOnly={readonly}
+            fontFamily={editor.fontFamily}
+            fontSize={editor.fontSize}
+            lineHeight={editor.lineHeight}
             onBlur={() =>
               dispatch(
                 addContent({

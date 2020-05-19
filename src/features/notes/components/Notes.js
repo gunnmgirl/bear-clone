@@ -15,7 +15,6 @@ const StyledNotes = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto;
 `;
 
 const Menu = styled.ul`
@@ -75,7 +74,10 @@ const StyledPopover = styled.div`
 
 function payload() {
   return {
-    text: "",
+    text:
+      "Write beautifully on iPhone, iPad, and Mac. \n \n" +
+      "Bear is a beautiful, flexible writing app for crafting notes and prose. Bear works on iPhone, iPad, and Mac, so you can write wherever inspiration strikes. \n \n" +
+      "Bear is perfect for everything from quick notes to in-depth essays. Full in-line image support brings your writing to life.",
     id: nanoid(),
     creationDate: new Date(),
     modificationDate: new Date(),
@@ -139,6 +141,7 @@ function Notes() {
           />
           <EditIconWrapper
             strokeWidth="1"
+            size="20"
             onClick={() => {
               dispatch(addNote(payload()));
               history.push(`${payload().id}`);
