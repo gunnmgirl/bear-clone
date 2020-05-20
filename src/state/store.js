@@ -14,6 +14,7 @@ store.subscribe(() => {
   saveState({
     notes: store.getState().notes,
     preferences: store.getState().preferences,
+    layout: store.getState().layout,
   });
 });
 

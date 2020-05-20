@@ -60,7 +60,6 @@ function Editor({ readonly, notes }) {
     if (note) {
       setInput(note.text);
       setNote(note);
-      console.log(note.text);
     }
   }, [noteId, notes]);
   if (noteId) {

@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Popover, PLACEMENT } from "@malcodeman/react-popover";
 import { Sidebar, Columns, Square, Layout } from "react-feather";
 import styled from "styled-components";
+
+import { toggleSidebars } from "../../layout/actions/layoutActions";
 
 const StyledPopover = styled.div`
   border-radius: 3px;
@@ -24,6 +27,14 @@ const Item = styled.div`
 
 function ToggleSidebarPopover() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const sidebars = useSelector((state) => state.layout.sidebars);
+
+  function handleOnClick() {
+    dispatch(toggleSidebars(!sidebars));
+  }
+
+  console.log(sidebars);
 
   function content() {
     return (
@@ -36,7 +47,7 @@ function ToggleSidebarPopover() {
             <Columns strokeWidth="1" />
           </Item>
           <Item>
-            <Square strokeWidth="1" />
+            <Square strokeWidth="1" onClick={handleOnClick} />
           </Item>
         </Wrapper>
       </StyledPopover>

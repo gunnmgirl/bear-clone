@@ -10,6 +10,7 @@ const StyledSideNav = styled.div`
   color: ${(props) => props.theme.tertiary};
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 `;
 
 const SideNavColumn = styled.div`

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
+import { useSpring, animated } from "react-spring";
 
 import SideNav from "./features/sideNav/SideNav";
 import Notes from "./features/notes/components/Notes";
@@ -10,14 +11,18 @@ import Trash from "./features/notes/trash/Trash";
 import GlobalStyle from "./GlobalStyle";
 import themes from "./themes";
 
-const Layout = styled.div`
+const Layout = styled(animated.div)`
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr 4fr;
   height: 100vh;
 `;
 
 function App() {
   const themeName = useSelector((state) => state.preferences.theme);
+  const sidebars = useSelector((state) => state.layout.sidebars);
+  const style = useSpring({
+    from: { gridTemplateColumns: "0.8fr 1.5fr 4fr" },
+    to: { gridTemplateColumns: sidebars ? "0.8fr 1.5fr 4fr" : "0 0 1fr" },
+  });
 
   function getTheme() {
     switch (themeName) {
@@ -38,7 +43,7 @@ function App() {
     <ThemeProvider theme={getTheme()}>
       <BrowserRouter>
         <GlobalStyle />
-        <Layout>
+        <Layout style={style}>
           <SideNav />
           <Switch>
             <Route path="/archive/:noteId?" component={Archive} />
