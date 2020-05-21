@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  sidebars: true,
+  sidebars: 2,
 };
 
 export default (state = INITIAL_STATE, action) => {
