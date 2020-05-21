@@ -3,40 +3,17 @@ import { nanoid } from "nanoid";
 const INITIAL_STATE = {
   notes: [
     {
-      text: "First note",
-      id: nanoid(),
-      creationDate: new Date(),
-      modificationDate: new Date(),
-    },
-    {
-      text: "Second note",
-      id: nanoid(),
-      creationDate: new Date(),
-      modificationDate: new Date(),
-    },
-  ],
-  archive: [
-    {
-      text: "First archive",
+      text:
+        "Write beautifully on iPhone, iPad, and Mac. \n \n" +
+        "Bear is a beautiful, flexible writing app for crafting notes and prose. Bear works on iPhone, iPad, and Mac, so you can write wherever inspiration strikes. \n \n" +
+        "Bear is perfect for everything from quick notes to in-depth essays. Full in-line image support brings your writing to life.",
       id: nanoid(),
       creationDate: new Date(),
       modificationDate: new Date(),
     },
   ],
-  trash: [
-    {
-      text: "First trash",
-      id: nanoid(),
-      creationDate: new Date(),
-      modificationDate: new Date(),
-    },
-    {
-      text: "Second trash",
-      id: nanoid(),
-      creationDate: new Date(),
-      modificationDate: new Date(),
-    },
-  ],
+  archive: [],
+  trash: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
