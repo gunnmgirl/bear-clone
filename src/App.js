@@ -40,7 +40,7 @@ function App() {
       case "darkGraphite":
         return themes.darkGraphite;
       default:
-        return themes.light;
+        return themes.redGraphite;
     }
   }
 
