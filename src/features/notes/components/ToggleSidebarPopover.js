@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 
 const Item = styled.div`
   padding: 0 0.4rem;
+  color: ${(props) => props.theme.primary};
 `;
 
 function ToggleSidebarPopover() {

@@ -1,12 +1,11 @@
 const darkGraphite = {
-  primaryBackground: "#fbfbfb",
+  primaryBackground: "#121212",
   secondaryBackground: "#2e3235",
-  tertiaryBackground: "#fff",
-  primary: "rgba(0, 0, 0, 0.8)",
-  secondary: "rgba(51, 51, 51, 0.5)",
+  tertiaryBackground: "rgb(71, 77, 82)",
+  primary: "rgba(255, 255, 255, 0.8)",
+  secondary: "rgba(140, 140, 140, 0.5)",
   tertiary: "#e6e6e6",
-  heading: "",
-  border: "rgba(46,50,53,0.2)",
+  border: "rgba(46,50,53,0.4)",
   highlight: "#4da6ff",
 };
 

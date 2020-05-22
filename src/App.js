@@ -28,20 +28,13 @@ function App() {
       case 1:
         return { to: { gridTemplateColumns: "0 1.5fr 4.8fr" } };
       case 2:
-        return { to: { gridTemplateColumns: "0.8fr 1.5fr 4fr" } };
       default:
-        return {
-          to: { gridTemplateColumns: "0.8fr 1.5fr 4fr" },
-        };
+        return { to: { gridTemplateColumns: "0.8fr 1.5fr 4fr" } };
     }
   }
 
   function getTheme() {
     switch (themeName) {
-      case "light":
-        return themes.light;
-      case "dark":
-        return themes.dark;
       case "redGraphite":
         return themes.redGraphite;
       case "darkGraphite":

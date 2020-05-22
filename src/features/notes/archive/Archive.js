@@ -43,14 +43,14 @@ const NotesContainer = styled.div`
 const Menu = styled.ul`
   padding: 0.25rem 1rem;
   margin: 0;
+  color: ${(props) => props.theme.primary};
+  background-color: ${(props) => props.theme.tertiaryBackground};
 `;
 
 const MenuItem = styled.li`
-  font-family: "Roboto", sans-serif;
   list-style: none;
   padding: 0.25rem 1rem;
   cursor: pointer;
-  color: #333;
   border-radius: 3px;
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);

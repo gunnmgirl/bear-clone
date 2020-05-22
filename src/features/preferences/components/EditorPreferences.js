@@ -20,6 +20,7 @@ const StyledEditorPreferences = styled.div`
 const StyledSelect = styled.select`
   border: 1px solid ${(props) => props.theme.border};
   color: ${(props) => props.theme.primary};
+  background-color: ${(props) => props.theme.primaryBackground};
 `;
 
 const Adjust = styled.div`
@@ -42,10 +43,12 @@ const Reset = styled.div`
 
 const LabelWrapper = styled.span`
   padding: 0.4rem 0;
+  color: ${(props) => props.theme.primary};
 `;
 
 const StyledButton = styled.button`
-  background-color: ${(props) => props.theme.tertiaryBackground};
+  background-color: ${(props) => props.theme.primaryBackground};
+  color: ${(props) => props.theme.highlight};
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 3%;
 `;

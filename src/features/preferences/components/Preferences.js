@@ -21,6 +21,7 @@ const StyledModal = styled.div`
 `;
 
 const ToolbarItem = styled.div`
+  color: ${(props) => props.theme.primary};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,7 +60,6 @@ function Preferences() {
               <ToolbarText>Editor</ToolbarText>
             </ToolbarItem>
           </Toolbar>
-
           {editorSelected ? <EditorPreferences /> : <ThemePreferences />}
         </StyledModal>
       </Modal>
