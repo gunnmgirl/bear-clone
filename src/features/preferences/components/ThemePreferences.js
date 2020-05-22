@@ -23,22 +23,22 @@ const ThemeBox = styled.div`
 `;
 
 const RedGraphiteThemeBox = styled(ThemeBox)`
-  background-color: ${(props) => themes.redGraphite.primaryBackground};
-  color: ${() => themes.redGraphite.highlight};
+  background-color: ${(props) => props.background};
+  color: ${(props) => props.color};
 `;
 
 const RedGraphiteParagraph = styled.p`
-  color: ${() => themes.redGraphite.secondary};
+  color: ${(props) => props.color};
   padding: 1rem 1rem;
 `;
 
 const DarkGraphiteThemeBox = styled(ThemeBox)`
-  background-color: ${(props) => themes.darkGraphite.primaryBackground};
-  color: ${() => themes.darkGraphite.highlight};
+  background-color: ${(props) => props.background};
+  color: ${(props) => props.color};
 `;
 
 const DarkGraphiteParagraph = styled.p`
-  color: ${() => themes.darkGraphite.secondary};
+  color: ${(props) => props.color};
   padding: 1rem 1rem;
 `;
 
@@ -47,6 +47,8 @@ function ThemePreferences() {
   return (
     <StyledThemePreferences>
       <RedGraphiteThemeBox
+        background={themes.redGraphite.primaryBackground}
+        color={themes.redGraphite.highlight}
         onClick={() => {
           dispatch(changeTheme("redGraphite"));
         }}
@@ -55,13 +57,15 @@ function ThemePreferences() {
         <span style={{ color: themes.redGraphite.primary }}>
           Lorem Ipsum...
         </span>
-        <RedGraphiteParagraph>
+        <RedGraphiteParagraph color={themes.redGraphite.secondary}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium,
           ante pulvinar ultricies maximus, orci nibh tempus velit, vitae
           tincidunt orci nibh nec nisi.
         </RedGraphiteParagraph>
       </RedGraphiteThemeBox>
       <DarkGraphiteThemeBox
+        background={themes.darkGraphite.primaryBackground}
+        color={themes.darkGraphite.highlight}
         onClick={() => {
           dispatch(changeTheme("darkGraphite"));
         }}
@@ -70,7 +74,7 @@ function ThemePreferences() {
         <span style={{ color: themes.darkGraphite.primary }}>
           Lorem Ipsum...
         </span>
-        <DarkGraphiteParagraph>
+        <DarkGraphiteParagraph color={themes.darkGraphite.secondary}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium,
           ante pulvinar ultricies maximus, orci nibh tempus velit, vitae
           tincidunt orci nibh nec nisi.
