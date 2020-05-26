@@ -132,6 +132,12 @@ function Notes() {
     );
   }
 
+  function handleOnClick() {
+    const newItem = payload();
+    dispatch(addNote(newItem));
+    history.push(`${newItem.id}`);
+  }
+
   return (
     <>
       <StyledNotes>
@@ -142,14 +148,7 @@ function Notes() {
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
           />
-          <EditIconWrapper
-            strokeWidth="1"
-            size="20"
-            onClick={() => {
-              dispatch(addNote(payload()));
-              history.push(`${payload().id}`);
-            }}
-          />
+          <EditIconWrapper strokeWidth="1" size="20" onClick={handleOnClick} />
         </StyledSearch>
         <NotesContainer>
           {filteredNotes.map((note) => (
