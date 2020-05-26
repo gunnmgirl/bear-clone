@@ -22,7 +22,8 @@ const Preview = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
-  word-break: break-all;
+  word-wrap: break-word;
+  overflow-y: hidden;
   border-bottom: 1px solid ${(props) => props.theme.border};
 `;
 
