@@ -31,7 +31,7 @@ const Container = styled.div`
 
 const StyledTextarea = styled.textarea`
   font-family: ${(props) => props.fontFamily};
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => `${props.fontSize}rem`};
   line-height: ${(props) => props.lineHeight};
   width: 100%;
   height: 100%;

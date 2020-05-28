@@ -57,7 +57,13 @@ function EditorPreferences() {
   const dispatch = useDispatch();
   const editor = useSelector((state) => state.preferences.editor);
 
-  function ResetToDefault() {}
+  function ResetToDefault() {
+    dispatch(changeFontFamily());
+    dispatch(changeFontSize());
+    dispatch(changeLineHeight());
+    dispatch(changeLineWidth());
+    dispatch(changeParagraphSpacing());
+  }
 
   return (
     <StyledEditorPreferences>
