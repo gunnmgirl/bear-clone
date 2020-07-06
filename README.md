@@ -2,7 +2,7 @@
 
 Bear is perfect for everything from quick notes to in-depth essays.
 Full in-line image support brings your writing to life.
-This app uses Redux for state management and local storage to save data.
+This app uses Redux for state management and local storage to save data. For UI related animation it uses react-spring which is a spring-physics based animation library.
 
 Visit [bear-clone](http://bear-clone.surge.sh/)
 
